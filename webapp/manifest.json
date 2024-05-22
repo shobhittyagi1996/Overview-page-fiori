@@ -1,0 +1,162 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "project4",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:ovp",
+      "version": "1.13.4",
+      "toolsId": "a4dc338c-1633-4fc9-a226-a63374c72999"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/v2/OData/OData.svc/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "annotation"
+          ],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.124.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.f": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ovp": {},
+        "sap.ui.rta": {},
+        "sap.ui.layout": {},
+        "sap.ui.integration": {} 
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "project4.i18n.i18n"
+        }
+      },
+      "mainModel": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "metadataUrlParams": {
+            "sap-value-list": "none"
+          }
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [],
+      "targets": {}
+    }
+  },
+  "sap.ovp": {
+    "globalFilterModel": "mainModel",
+    "globalFilterEntityType": "Product",
+    "containerLayout": "resizable",
+    "enableLiveFilter": true,
+    "considerAnalyticalParameters": false,
+    "cards": {
+      "productListCard": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.list",
+        "settings": {
+          "title": "Product List",
+          "entitySet": "Products",
+          "listType": "extended",
+          "listFlavor": "bar",
+          "annotationPath": "com.sap.vocabularies.UI.v1.LineItem"
+        }
+      },
+      "productTableCard": {
+        "model": "mainModel",
+        "template": "sap.ovp.cards.table",
+        "settings": {
+          "title": "Product Table",
+          "entitySet": "Products",
+          "annotationPath": "com.sap.vocabularies.UI.v1.LineItem"
+        }
+      },
+      "card1": { 
+        "model": "mainModel",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "{{Analytical Card}}",
+          "entitySet": "Products",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart"
+        }
+      },
+      "linkListCard": { 
+        "model": "mainModel",
+        "template": "sap.ovp.cards.linklist",
+        "settings": {
+          "title": "Link List Card",
+          "entitySet": "Products",
+          "annotationPath": "com.sap.vocabularies.UI.v1.HeaderInfo"
+        }
+      }
+    },
+    "chartSettings": {}
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "analytical"
+  }
+}
